@@ -1,23 +1,15 @@
-.ReturnsContainer {
-  @include gridle(12 sm 5 suffix 1);
-}
-
 .ReturnsContainer-section {
-  background-color: $color-white;
-  margin-bottom: 4px;
-  box-shadow: 0px 0px 5px 1px rgba($color-black, 0.1);
-
-  header i {
-    transition: transform 0.3s;
-  }
+  @include gridle(12);
 
   &.is-active {
-    header {
-      border-bottom: 1px dashed $color-grey-light;
+    header i {
+      transform: rotate(90deg);
+    }
+  }
 
-      i {
-        transform: rotate(180deg);
-      }
+  &:not(:nth-of-type(1)) {
+    .ReturnsContainer-values {
+      height: 0;
     }
   }
 }
@@ -25,15 +17,28 @@
 .ReturnsContainer-header {
   padding: 15px;
   cursor: pointer;
-  transition: background-color 0.25s;
+  transition: all 0.25s ease-in-out;
+  border: 1px solid $color-black;
+  margin-bottom: 20px;
 
   &:hover {
-    background-color: rgba($color-grey-light, 0.25);
+    background-color: $color-green-accent;
+    border-color: $color-green-accent;
+
+    h3, i {
+      color: $color-white;
+    }
+  }
+
+  h3, i {
+    transition: all 0.25s ease-in-out;
+    color: $color-green-primary;
   }
 
   h3 {
     display: inline-block;
     text-transform: uppercase;
+    font-weight: normal;
   }
 }
 
@@ -41,12 +46,55 @@
   overflow: hidden;
 
   ul {
-    @include gridle(container);
-
-    margin: 10px 0 20px;
+    @include gridle(6);
 
     li {
       @include gridle(12);
+
+      padding: 3px 8px;
+      display: block;
+      float: none;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+
+      span {
+        font-size: 14px;
+      }
+
+      &:last-child {
+        border-bottom: none;
+      }
     }
   }
+
+  .anticon {
+    margin-left: 5px;
+    cursor: pointer;
+  }
+}
+
+.ReturnsContainer-profit {
+  background-color: $color-green-primary;
+  color: $color-white;
+}
+
+.ReturnsContainer-salePrice {
+  margin-top: 20px;
+  background-color: rgba($color-black, 0.3);
+}
+
+.ReturnsContainer-governmentProfit {
+  border-bottom: none !important;
+}
+
+.ReturnsContainer-price {
+  margin-top: 20px;
+  background-color: rgba($color-black, 0.3);
+}
+
+.ReturnsContainer-holdPeriod {
+  margin-top: 20px;
+}
+
+.ReturnsContainer-graph {
+  @include gridle(6);
 }

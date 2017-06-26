@@ -2,16 +2,23 @@ import React, { Component, PropTypes } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { connect } from 'react-redux';
 
+import Icon from 'antd/lib/icon';
+import 'antd/lib/icon/style/css';
+
+import formatCurrency from '../utils/formatCurrency';
+
 import { updatePrice } from '../actions/purchaseInputs';
 
 class ListingsContainer extends Component {
   constructor(props) {
     super(props);
 
-    this.onClick = this.onClick.bind(this);
+    this.onListingClick = this.onListingClick.bind(this);
   }
 
-  onClick(event) {
+  onListingClick(event) {
+    event.preventDefault();
+
     const price = parseInt(event.currentTarget.getAttribute('data-price'));
     const { onUpdatePrice } = this.props;
 
@@ -19,13 +26,27 @@ class ListingsContainer extends Component {
   }
 
   render() {
-    const listings = this.props.propertyListings.listing || [];
+    const listings = this.props.listing.listing || [];
 
     return (
       <div className="ListingsContainer">
-        <ul>{listings.map((listing, index) => (
-          <li onClick={this.onClick} data-price={listing.price} key={index}>
-            <img src={listing.image_url} alt="" />
+        <h3 className="ListingsContainer-title">PROPERTY LISTINGS</h3>
+        <ul className="ListingsContainer-listings">{listings.map((listing, index) => (
+          <li key={index} >
+            <a href={listing.details_url} target="_blank">
+              <img src={listing.image_url} alt="" />
+              <span className="price">{formatCurrency(parseInt(listing.price))}</span>
+              <p
+                className="description"
+                dangerouslySetInnerHTML={{ __html: listing.short_description }}
+              />
+              <Icon
+                type="pie-chart"
+                className="logo"
+                onClick={this.onListingClick}
+                data-price={listing.price}
+              />
+            </a>
           </li>
         ))}</ul>
       </div>
@@ -34,11 +55,11 @@ class ListingsContainer extends Component {
 }
 
 ListingsContainer.propTypes = {
-  propertyListings: PropTypes.object,
+  listing: PropTypes.object,
 };
 
 const mapStateToProps = (state) => ({
-  propertyListings: state.propertyListings,
+  listing: state.propertySearch.listing,
 });
 
 const mapDispatchToProps = (dispatch) => ({

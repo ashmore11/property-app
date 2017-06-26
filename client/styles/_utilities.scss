@@ -1,4 +1,8 @@
-.u-floatRight { @include gridle(float right); }
+.u-floatRight {
+  @include gridle(float right);
+
+  margin-top: 1px;
+}
 
 .u-xl-textSize { font-size: $font-size-xl; }
 .u-lg-textSize { font-size: $font-size-lg; }
@@ -7,14 +11,18 @@
 .u-xs-textSize { font-size: $font-size-xs; }
 
 .u-formInput {
-  @include gridle(12 sm 6 lg 4);
+  @include gridle(12);
 
-  margin: 5px 0;
-  min-height: 54px;
+  margin-bottom: 10px;
 
   > span {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 2px;
+  }
+
+  .anticon {
+    margin-left: 5px;
+    cursor: pointer;
   }
 
   .ant-select,
@@ -24,5 +32,21 @@
 
   .ant-switch {
     width: 40px;
+  }
+}
+
+.Popover {
+  max-width: 300px;
+
+  p, a {
+    font-size: 12px;
+  }
+
+  p {
+    margin-bottom: 10px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 }

@@ -4,6 +4,9 @@ import {
   UPDATE_BROKER_FEE,
   UPDATE_LOAN_TYPE,
   UPDATE_TERM,
+  UPDATE_GOVERNMENT_LOAN,
+  UPDATE_MORTGAGE_SIZE,
+  UPDATE_HOUSEHOLD_INCOME,
 } from '../constants';
 
 export function updateDeposit(deposit) {
@@ -38,5 +41,26 @@ export function updateTerm(term) {
   return {
     type: UPDATE_TERM,
     payload: term,
+  };
+}
+
+export function updateGovernmentLoan(governmentLoan) {
+  return {
+    type: UPDATE_GOVERNMENT_LOAN,
+    payload: governmentLoan,
+  };
+}
+
+export function updateMortgageSize(mortgageSize) {
+  return {
+    type: UPDATE_MORTGAGE_SIZE,
+    payload: mortgageSize,
+  };
+}
+
+export function updateHouseholdIncome(householdIncome) {
+  return {
+    type: UPDATE_HOUSEHOLD_INCOME,
+    payload: householdIncome,
   };
 }

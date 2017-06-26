@@ -7,7 +7,15 @@ import { Link } from 'react-router';
 import Header from './Header';
 
 import getListings from '../utils/getListings';
-import { updateListings } from '../actions/propertyListings';
+
+import { updateAppLoading } from '../actions/navigation';
+
+import {
+  updateListing,
+  updateAdminDistrict,
+  updateRegion,
+  updateFiveYearGrowth,
+} from '../actions/propertySearch';
 
 class App extends Component {
   constructor(props) {
@@ -15,15 +23,35 @@ class App extends Component {
   }
 
   componentWillMount() {
-    const { onUpdateListings, propertyInputs } = this.props;
+    const {
+      onUpdateAppLoading,
+      onUpdateListing,
+      onUpdateAdminDistrict,
+      onUpdateRegion,
+      onUpdateFiveYearGrowth,
+      propertyInputs,
+    } = this.props;
+
+    console.log('---[ APP LOADING ]---');
 
     Meteor.call('getUserLocationFromIp', (err, userLocation) => {
       if (err) { console.log(err); return; }
 
-      getListings({ ...propertyInputs, location: userLocation.city }, listings => {
-        onUpdateListings(listings);
+      getListings({ ...propertyInputs, location: userLocation.city }, data => {
+        onUpdateListing(data.listing);
+        onUpdateAdminDistrict(data.adminDistrict);
+        onUpdateRegion(data.region);
+        onUpdateFiveYearGrowth(data.fiveYearGrowth);
+
+        onUpdateAppLoading(false);
       });
     });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (!nextProps.appLoading) {
+      console.log('---[ APP LOADED ]---');
+    }
   }
  
   render() {
@@ -33,26 +61,38 @@ class App extends Component {
       <div className={`AppContainer ${navActive ? 'navActive' : ''}`}>
         <Header />
         {this.props.children}
-        <footer className="AppFooter">This is the footer</footer>
       </div>
     );
   }
 }
 
 App.propTypes = {
-  currentUser: PropTypes.object,
   children: PropTypes.node.isRequired,
+  appLoading: PropTypes.bool,
   propertyInputs: PropTypes.object,
 };
 
 const mapStateToProps = (state) => ({
-  propertyInputs: state.propertyInputs,
+  appLoading: state.navigation.appLoading,
   navActive: state.navigation.navActive,
+  propertyInputs: state.propertyInputs,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onUpdateListings(listings) {
-    dispatch(updateListings(listings));
+  onUpdateAppLoading(isLoading) {
+    dispatch(updateAppLoading(isLoading));
+  },
+  onUpdateListing(listing) {
+    dispatch(updateListing(listing));
+  },
+  onUpdateAdminDistrict(adminDistrict) {
+    dispatch(updateAdminDistrict(adminDistrict));
+  },
+  onUpdateRegion(region) {
+    dispatch(updateRegion(region));
+  },
+  onUpdateFiveYearGrowth(fiveYearGrowth) {
+    dispatch(updateFiveYearGrowth(fiveYearGrowth));
   },
 });
 
