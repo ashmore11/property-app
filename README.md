@@ -22,7 +22,7 @@ Install all of the above and read the documentation they offer to get familliar 
 * This will build the project and serve it locally for you.
 * Navigate to http://localhost:3000 in chrome to preview the site.
 * Any updates you make to the code will be automatically compiled and your browser will refresh automatically.
-* Once you have made some changes and would like to push the to the repo, create a pull request and add me as a reviewer.
+* Once you have made some changes and would like to push the to the repo, create a pull request to the develop branch and add me as a reviewer.
 * Again you can find instructions for the above in either the SourceTree or Git docs.
 
 ##
