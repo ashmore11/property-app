@@ -1,7 +1,5 @@
 # This is Property
 
-##
-
 ### Prerequisites
 
 * [Git](https://git-scm.com/downloads) - Source control.
