@@ -1,5 +1,7 @@
 # This is Property
+
 ##
+
 ### Prerequisites
 
 * [Git](https://git-scm.com/downloads) - Source control.
@@ -9,6 +11,7 @@
 * [Meteor](https://www.meteor.com/) - The framework used to build the site.
 
 ##
+
 ### Setup instructions
 
 Install all of the above and read the documentation they offer to get familliar with them.
@@ -26,6 +29,7 @@ Install all of the above and read the documentation they offer to get familliar 
 * Again you can find instructions for the above in either the SourceTree or Git docs.
 
 ##
+
 ### Files
 All the frontend files are located in the ```client``` folder. <br>
 All the css files live in the ```client/styles``` folder. I am using [scss](http://sass-lang.com/). It's basically just plain old cms but with many extra features.
