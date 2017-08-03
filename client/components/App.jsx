@@ -34,21 +34,30 @@ class App extends Component {
 
     console.log('---[ APP LOADING ]---');
 
-    Meteor.call('getUserLocationFromIp', (err, userLocation) => {
-      if (err) { console.log(err); return; }
+    // Meteor.call('getUserLocationFromIp', (err, userLocation) => {
+    //   if (err) { console.log(err); return; }
 
-      const location = userLocation.city === '' ? 'London' : userLocation.city;
+    //   console.log(userLocation);
 
-      console.log(location, userLocation);
+    //   const location = userLocation.city === '' ? 'London' : userLocation.city;
 
-      getListings({ ...propertyInputs, location }, data => {
-        onUpdateListing(data.listing);
-        onUpdateAdminDistrict(data.adminDistrict);
-        onUpdateRegion(data.region);
-        onUpdateFiveYearGrowth(data.fiveYearGrowth);
+    //   getListings({ ...propertyInputs, location }, data => {
+    //     onUpdateListing(data.listing);
+    //     onUpdateAdminDistrict(data.adminDistrict);
+    //     onUpdateRegion(data.region);
+    //     onUpdateFiveYearGrowth(data.fiveYearGrowth);
 
-        onUpdateAppLoading(false);
-      });
+    //     onUpdateAppLoading(false);
+    //   });
+    // });
+
+    getListings({ ...propertyInputs, 'London' }, data => {
+      onUpdateListing(data.listing);
+      onUpdateAdminDistrict(data.adminDistrict);
+      onUpdateRegion(data.region);
+      onUpdateFiveYearGrowth(data.fiveYearGrowth);
+
+      onUpdateAppLoading(false);
     });
   }
 
