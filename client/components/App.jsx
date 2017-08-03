@@ -39,6 +39,8 @@ class App extends Component {
 
       const location = userLocation.city === '' ? 'London' : userLocation.city;
 
+      console.log(location, userLocation);
+
       getListings({ ...propertyInputs, location }, data => {
         onUpdateListing(data.listing);
         onUpdateAdminDistrict(data.adminDistrict);
