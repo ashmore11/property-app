@@ -51,7 +51,7 @@ class App extends Component {
     //   });
     // });
 
-    getListings({ ...propertyInputs, 'London' }, data => {
+    getListings({ ...propertyInputs, location: 'London' }, data => {
       onUpdateListing(data.listing);
       onUpdateAdminDistrict(data.adminDistrict);
       onUpdateRegion(data.region);
