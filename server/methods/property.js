@@ -7,8 +7,10 @@ import geoip from 'geoip-lite';
 Meteor.methods({
   getUserLocationFromIp() {
     let { clientAddress } = this.connection;
-    const ip = clientAddress === '127.0.0.1' ? '178.62.57.183' : clientAddress;
+    const ip = clientAddress === '127.0.0.1' ? '196.52.84.82' : clientAddress;
     const userLocation = geoip.lookup(ip);
+
+    console.log(ip, userLocation);
 
     return userLocation;
   },
