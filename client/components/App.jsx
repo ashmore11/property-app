@@ -37,7 +37,9 @@ class App extends Component {
     Meteor.call('getUserLocationFromIp', (err, userLocation) => {
       if (err) { console.log(err); return; }
 
-      getListings({ ...propertyInputs, location: 'London' }, data => {
+      const location = userLocation.city === '' ? 'London' : userLocation.city;
+
+      getListings({ ...propertyInputs, location }, data => {
         onUpdateListing(data.listing);
         onUpdateAdminDistrict(data.adminDistrict);
         onUpdateRegion(data.region);

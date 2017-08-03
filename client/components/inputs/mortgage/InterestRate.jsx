@@ -31,10 +31,7 @@ class InterestRate extends Component {
           step={0.1}
           onChange={this.onChange}
           value={interestRate}
-          formatter={value => {
-            console.log(value);
-            return `% ${value}`;
-          }}
+          formatter={value => `% ${value}`}
         />
       </div>
     );

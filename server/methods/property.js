@@ -10,8 +10,6 @@ Meteor.methods({
     const ip = clientAddress === '127.0.0.1' ? '196.52.84.82' : clientAddress;
     const userLocation = geoip.lookup(ip);
 
-    console.log(ip, userLocation);
-
     return userLocation;
   },
 
