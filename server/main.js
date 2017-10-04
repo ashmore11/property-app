@@ -1,5 +1,5 @@
-const email = encodeURIComponent('dev.scottashmore@gmail.com');
+const email = encodeURIComponent('some.address@gmail.com');
 
 Meteor.startup(() => {
-  process.env.MAIL_URL = `smtp://${email}:13-cheese-ass@smtp.gmail.com:465`;
+  process.env.MAIL_URL = `smtp://${email}:password@smtp.gmail.com:465`;
 });
